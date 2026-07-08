@@ -5,8 +5,8 @@
 
 import type { Activity, Adhesion, HomeHeroSettings, NewsItem, TeamMember } from '@/types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '/api';
-const API_ORIGIN = API_BASE.startsWith('http') ? new URL(API_BASE).origin : '';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api';
+const API_ORIGIN = API_BASE.replace(/\/api$/, '');
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
