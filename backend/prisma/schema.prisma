@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Activity {
+  id            String  @id @default(uuid())
+  title         String
+  description   String  @db.Text
+  category      String
+  image         String
+  gallery       Json?
+  date          String
+  location      String
+  targetAmount  Float
+  raisedAmount  Float
+  beneficiaries Int
+  status        String
+  details       String  @db.Text
+}
+
+model Adhesion {
+  id             String   @id @default(uuid())
+  firstName      String
+  lastName       String
+  email          String
+  phone          String
+  birthDate      String
+  city           String
+  profession     String
+  interests      Json
+  preferredSlots Json
+  status         String   @default("pending")
+  createdAt      DateTime @default(now())
+}
+
+model TeamMember {
+  id       String  @id @default(uuid())
+  name     String
+  role     String
+  category String
+  avatar   String
+  phone    String?
+  email    String?
+}
+
+model NewsItem {
+  id      String @id @default(uuid())
+  title   String
+  summary String @db.Text
+  content String @db.Text
+  date    String
+  image   String
+  views   Int    @default(0)
+}
+
+model HomeHeroSetting {
+  id          String @id
+  badge       String
+  title       String
+  location    String
+  description String @db.Text
+  image       String
+}
+
+model AdminUser {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  name     String
+  role     String
+}

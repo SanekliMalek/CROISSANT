@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Croissant-Rouge Gafsa",
+  "description": "The official premium portal of the Regional Committee of Gafsa for the Tunisian Red Crescent, managing humanitarian operations, volunteers, and regional aid campaigns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
