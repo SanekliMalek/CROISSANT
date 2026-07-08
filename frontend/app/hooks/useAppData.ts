@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Activity, HomeHeroSettings, NewsItem, TeamMember } from '@/types';
 import { activitiesApi, homeHeroApi, newsApi, teamApi } from '@/services/api';
 import { DEFAULT_ACTIVITIES, DEFAULT_NEWS, DEFAULT_TEAM } from '@/data/defaultData';
@@ -12,7 +12,9 @@ export function useAppData() {
   const [homeHero, setHomeHero] = useState<HomeHeroSettings | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
+  // Stable reference — must be wrapped in useCallback so it doesn't
+  // get recreated on every render and trigger an infinite re-render loop.
+  const fetchData = useCallback(async () => {
     try {
       const [actRes, newsRes, teamRes] = await Promise.all([
         activitiesApi.getAll(),
@@ -27,11 +29,11 @@ export function useAppData() {
     } catch (err) {
       console.warn('Using local default data because the API is unavailable.', err);
     }
-  };
+  }, []); // no deps — API functions are module-level constants
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return { activities, news, team, homeHero, loading, refetch: fetchData };
 }

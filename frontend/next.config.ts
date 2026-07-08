@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: {
-    root: process.cwd(),
+    root: __dirname, // Always resolves to frontend/ regardless of cwd
   },
   // Rewrites so clean public URLs map to /routes/* segments
   async rewrites() {
