@@ -9,7 +9,7 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "build": "npm --prefix backend install --include=dev && npm --prefix backend run build && npm --prefix frontend install --include=dev && npm --prefix frontend run build",
     "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
-    "start": "npm --prefix frontend run start"
+    "start": "node scripts/start.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

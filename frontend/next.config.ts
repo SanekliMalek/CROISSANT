@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   // Rewrites so clean public URLs map to /routes/* segments
   async rewrites() {
     return [
+      { source: "/api/:path*", destination: "http://127.0.0.1:3001/api/:path*" },
       { source: "/activities", destination: "/routes/activities" },
       { source: "/adhesion", destination: "/routes/adhesion" },
       { source: "/team", destination: "/routes/team" },
